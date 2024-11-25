@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from .models import Review, Products
 
-# Create your views here.
+def create_reviews(request, product_id):
+  pass
