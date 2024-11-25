@@ -5,5 +5,5 @@ def create_product(request):
     pass
 def delete_product(request):
     pass
-def product_list(request):
+def productlist(request):
     pass
