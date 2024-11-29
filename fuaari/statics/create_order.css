@@ -1,0 +1,131 @@
+body, h1, p, ul, li, a, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 0px;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+    padding: 10px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0px 20px
+    
+}
+
+header ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+header ul a:hover {
+    text-decoration: underline;
+}
+
+/* Heading Styling */
+h1.create {
+    color: #333; 
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Product Image Styling */
+img {
+    display: block;
+    margin: 20px auto; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    max-width: 100%; 
+    height: auto;
+}
+
+/* Product Details Styling */
+p.text1, p.text2 {
+    font-size: 18px;
+    color: #555; 
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Form Container Styling */
+form {
+    width: 50%; 
+    margin: 20px auto; 
+    background-color: white; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Textarea Styling */
+form input, 
+form textarea {
+    width: 100%; 
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Input Focus Effect */
+form input:focus, 
+form textarea:focus {
+    border-color: #007BFF; 
+}
+
+/* Submit Button Styling */
+form button[type="submit"] {
+    width: 100%; 
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
