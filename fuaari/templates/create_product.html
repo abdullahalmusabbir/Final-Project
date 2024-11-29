@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Product</title>
+    <link rel="stylesheet" href="{% static 'css/create_product.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>FuaaRI</h1>
+        </div>
+        <nav>
+            <ul>
+                Welcome, {{ user.username }}!
+                <a href="{% url 'product_list' %}">Products</a>
+                <a href="{% url 'signout' %}">Log Out</a>
+            </ul>
+        </nav>
+    </header>
+    <h1 class='create'>Create Product </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Product</button>
+    </form>
+    <footer>
+        <p>&copy; 2024 D&M IT</p>
+    </footer>
+</body>
+</html>
