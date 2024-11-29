@@ -13,6 +13,7 @@ class Seller(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=15, blank=True, null=True)
+    purchased_products = models.JSONField(default=list)
 
     def __str__(self):
         return self.user.username    
