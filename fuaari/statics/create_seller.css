@@ -1,0 +1,145 @@
+body, h1, p, ul, li, a, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Layout */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 20px 10px;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+header ul a:hover {
+    text-decoration: underline;
+}
+
+/* Content Layout */
+main {
+    display: flex;
+    flex: 1;
+    margin: 20px;
+}
+
+form {
+    width: 50%; 
+    margin: 20px auto; 
+    background-color: white; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    
+}
+
+/* Label Styling */
+form label {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    display: block; 
+    margin-bottom: 5px;
+}
+
+/* Input Fields Styling */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="checkbox"],
+form textarea {
+    width: 100%; 
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px; 
+    font-size: 14px;
+    box-sizing: border-box; 
+    outline: none; 
+    transition: border-color 0.3s ease;
+}
+
+/* Focus Effect for Inputs */
+form input:focus,
+form textarea:focus {
+    border-color: #007BFF; 
+}
+
+/* Checkbox Styling */
+form input[type="checkbox"] {
+    width: auto; 
+    margin-right: 10px;
+}
+
+/* Button Styling */
+form button[type="submit"] {
+    width: 100%; 
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+/* Seller Fields Styling */
+#sellerFields {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1; 
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#sellerFields label {
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    form {
+        width: 90%; 
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
