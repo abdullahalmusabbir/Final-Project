@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>FuaaRI</h1>
+        </div>
+        <nav>
+            <ul>
+                <a href={% url 'product_list' %}>Products</a>
+            </ul>
+        </nav>
+    </header>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+        <a href="{% url 'signup' %}">Sing Up</a>
+    </form>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2024 D&M IT</p>
+    </footer>
+</body>
+</html>
