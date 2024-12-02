@@ -1,0 +1,108 @@
+/* General Reset */
+body, h1, p, ul, li, a, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Layout */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 20px 10px;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header ul a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+header ul a:hover {
+    text-decoration: underline;
+}
+
+/* Content Layout */
+main {
+    display: flex;
+    flex: 1;
+    margin: 20px;
+}
+
+/* Order List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+    gap: 20px; /* Space between order cards */
+    justify-content: center; /* Center the order cards */
+    margin-top: 20px;
+}
+
+ul li {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    width: 300px; /* Fixed width for each order card */
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Hover effect for cards */
+}
+
+/* Individual Order Details */
+ul li p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+ul li p span {
+    font-weight: bold; /* Highlight the label */
+    color: #007bff; /* Professional blue color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    ul li {
+        width: 100%; /* Full width for small screens */
+    }
+}
+
+
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
