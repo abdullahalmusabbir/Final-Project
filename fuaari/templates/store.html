@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+    <style>
+        .store {
+            display: block; 
+            text-decoration: none; 
+            color: #333; 
+            background-color: #f9f9f9; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            padding: 15px 20px; 
+            margin: 10px 0; 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+        }
+        
+        .store:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #f1f1f1; 
+        }
+        
+        .store p {
+            margin: 5px 0; 
+            font-size: 16px; 
+            line-height: 1.5; 
+        }
+        
+        .store span {
+            font-weight: bold; 
+            color: #007bff; 
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>FuaaRI</h1>
+        </div>
+        <nav class="header-right">
+            <ul>
+                
+                {% if user.is_authenticated %}
+                    Welcome, {{ user.username }}!
+                    {% if user.seller %}
+                        <a href="{% url 'deshboard' %}">Dashboard</a>
+                        <a href={% url 'product_list' %}>Products</a>
+                    {% endif %}
+                        <a href="{% url 'signout' %}">Log Out</a>
+                {% else %}
+                <a href={% url 'product_list' %}>Products</a>
+                    <a href="{% url 'login' %}">Log In</a>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </ul>
+        </nav>
+    </header> 
+
+    <ul>
+        {% for a in seller %}
+            {% if a.id != user.seller.id %}
+                <li>
+                    <a href="{% url 'shop_details' a.id %}" class="store">
+                        <p><span>Shop Name:</span> {{ a.business_name }}</p>
+                        <p><span>Shop Location:</span>{{ a.business_location }}</p>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    
+    <footer>
+        <p>&copy; 2024 D&M IT</p>
+    </footer>
+</body>
+</html>
