@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link rel="stylesheet" href="{% static 'css/shop_details.css' %}">
+    <style>
+        /* Product List */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: center;
+    gap: 20px;
+    margin-left: 30vh;
+    margin-top: 20px;
+}
+
+ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+ul li:hover {
+    transform: translateY(-5px);
+}
+
+ul li img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+ul li a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+ul li a:hover {
+    background-color: #2980b9;
+}
+.centered-title {
+    text-align: center; /* Center align the text */
+    font-size: 32px; /* Larger font size for emphasis */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Professional dark color */
+    margin-top: 20px; /* Add some space above */
+    margin-bottom: 20px; /* Add some space below */
+    padding: 10px 20px; /* Add some padding inside */
+    background-color: #f9f9f9; /* Light grey background */
+    border: 1px solid #ddd; /* Subtle border for definition */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    display: inline-block; /* Adjust the width to fit content */
+}
+ul li .price {
+    font-size: 1.2em;
+    color: #e67e22;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>FuaaRI</h1>
+        </div>
+        <nav class="header-right">
+            <ul>
+                
+                {% if user.is_authenticated %}
+                    Welcome, {{ user.username }}!
+                    {% if user.seller %}
+                        <a href="{% url 'deshboard' %}">Dashboard</a>
+                        <a href={% url 'product_list' %}>Products</a>
+                        <a href="{% url 'store' %}">Store</a>
+                    {% endif %}
+                        <a href="{% url 'signout' %}">Log Out</a>
+                {% else %}
+                    <a href={% url 'product_list' %}>Products</a>
+                    <a href="{% url 'store' %}">Store</a>
+                    <a href="{% url 'login' %}">Log In</a>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </ul>
+        </nav>
+    </header> 
+    <h2 class="centered-title">{{ seller.business_name }}</h2>
+    <ul>
+        {% if user.is_authenticated %}
+            {% for a in product %}
+                {% if a.seller_id.id != user.seller.id %}
+                    <li>
+                        <img src="{{ a.images.url }}" width="200"> <br>
+                        <p>{{ a.name }}</p>
+                        <p>{{ a.description }}</p>
+                        <div class="product-info">
+                            <p>Price: <span class="price">TK {{ a.price }}BDT</span></p>
+                        </div>
+                        <a href="{% url 'create_order' a.id user.id a.seller_id.id %}">Order</a>
+                        <a href="{% url 'create_reviews' a.id user.id %}">Reviews</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% for a in product %}
+                <li>
+                    <img src="{{ a.images.url }}" width="200"> <br>
+                    <p>{{ a.name }}</p>
+                    <p>{{ a.description }}</p>
+                    <div class="product-info">
+                        <p>Price: <span class="price">TK {{ a.price }}BDT</span></p>
+                    </div>
+                    <p>Login to Order or Review</p>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <footer>
+        <p>&copy; 2024 D&M IT</p>
+    </footer>
+</body>
+</html>
