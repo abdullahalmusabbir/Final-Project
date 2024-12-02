@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="{% static 'css/order_list.css' %}">
+    <style>
+        /* Order Button Styling */
+        .order {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745; 
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px; 
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .order:hover {
+            background-color: #218838; 
+            transform: scale(1.05); 
+        }
+
+        /* Pop-Up Screen Styling */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup-content h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .popup-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .popup-buttons .confirm {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .popup-buttons .confirm:hover {
+            background-color: #218838;
+        }
+
+        .popup-buttons .cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .popup-buttons .cancel:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>FuaaRI</h1>
+        </div>
+        <nav>
+            <ul>
+                Welcome, {{ user.username }}!
+                {% if user.seller %}
+                    <a href="{% url 'deshboard' %}">Dashboard</a>
+                {% endif %}
+                <a href={% url 'product_list' %}>Products</a>
+                <a href="{% url 'store' %}">Store</a>
+                <a href="{% url 'signout' %}">Log Out</a>
+            </ul>
+        </nav>
+    </header>
+
+    <ul>
+        {% for a in orders %}
+            {% if a.seller_id.id == user.seller.id %}
+                <li>
+                    <p><span>Buyer Name:</span> {{ a.buyer_id }}</p>
+                    <p><span>Product ID:</span> {{ a.product_id.id }}</p>
+                    <p><span>Quantity:</span> {{ a.quantity }}</p>
+                    <p><span>Number:</span> {{ a.number }}</p>
+                    <p><span>Address:</span> {{ a.address }}</p>
+                    <p><span>Price:</span> {{ a.price.price }}</p>
+                    <a href="{% url 'delete_oder' a.id %}" class="order" >Order Complete</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+    <footer>
+        <p>&copy; 2024 D&M IT</p>
+    </footer>    
+
+</body>
+</html>
